@@ -1,0 +1,11 @@
+{
+    "name": "Rohlinheatagtmuf Hdhaotaotfnllsape'atnsasri",
+    "version": "0.101.0",
+    "title": "Requirement of having lamps is not heavily enforced as they are generally the most useless fixtures. However, distributing high amount of them all over the factory no longer looks like such a pointless exercise, after the night stoped appearing so ridiculously inconsequantial.",
+    "author": "<NO_NAME>",
+    "contact": "",
+    "homepage": "",
+    "factorio_version": "1.1",
+    "dependencies": ["base >= 1.1"],
+	"description": "Allows to adjust length of the day and choose brightness and color of the night, zoom-to-map, night-vision and so on.\n(This is a purely graphical change which does not affect the game mechanics.)\n\nFactory moves fast,\ngrowth and maintenance required,\nnature does not let."
+}
