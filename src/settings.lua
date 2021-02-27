@@ -21,7 +21,7 @@ local durationSettings = {
 	{groupName = settingNames.groups.game, default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunrise},
 	{groupName = settingNames.groups.map, default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunset},
 	{groupName = settingNames.groups.map, default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.map, default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise}
+	{groupName = settingNames.groups.map, default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise},
 }
 for _, setting in ipairs(durationSettings) do
 	data:extend({
@@ -34,7 +34,7 @@ for _, setting in ipairs(durationSettings) do
 			order = makeOrder(setting.groupName, setting.targetName, settingNames.options.duration),
 			setting_type = "startup",
 			localised_name = {localeNamePrefix .. makeSettingName(setting.groupName, nil, settingNames.options.duration), {localeSettingNamePrefix .. setting.targetName}},
-			localised_description = {localeDescriptionPrefix .. makeSettingName(setting.groupName, nil, settingNames.options.duration), {localeSettingDescriptionPrefix .. setting.targetName}, setting.default, setting.vanilla}
+			localised_description = {localeDescriptionPrefix .. makeSettingName(setting.groupName, nil, settingNames.options.duration), {localeSettingDescriptionPrefix .. setting.targetName}, setting.default, setting.vanilla},
 		}
 	})
 end

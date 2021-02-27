@@ -4,16 +4,16 @@ settingNamePrefix = modName .. "-"
 settingNames = {
 	groups = {
 		game = "game",
-		map = "map"
+		map = "map",
 	},
 	targets = {
 		sunset = "sunset",
 		night = "night",
-		sunrise = "sunrise"
+		sunrise = "sunrise",
 	},
 	options = {
-		duration = "duration"
-	}
+		duration = "duration",
+	},
 }
 function makeSettingName(groupName, targetName, optionName)
 	if targetName == nil then
