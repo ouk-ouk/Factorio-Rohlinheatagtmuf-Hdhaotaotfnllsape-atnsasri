@@ -109,14 +109,14 @@ end
 
 local defaultConstants = data.raw["utility-constants"]["default"]
 
-local function customizeColorLookup(colorLookupName, settingNamePrefix, dayLut, nightLut)
-	local sunsetDuration = math.floor(settings.startup[settingNamePrefix .. sunsetDurationSettingNameSuffix].value * 10000)
-	local nightDuration = math.floor(settings.startup[settingNamePrefix .. nightDurationSettingNameSuffix].value * 10000)
-	local sunriseDuration = math.floor(settings.startup[settingNamePrefix .. sunriseDurationSettingNameSuffix].value * 10000)
+local function customizeColorLookup(colorLookupName, groupName, dayLut, nightLut)
+	local sunsetDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset, settingNames.options.duration)].value * 10000)
+	local nightDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.duration)].value * 10000)
+	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.duration)].value * 10000)
 
 	local colorLookup
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
-		-- disco mode
+		-- Disco mode
 		colorLookup = {}
 		for i = 0, 49 do
 			table.insert(colorLookup, {0.02 * i, dayLut})
@@ -127,8 +127,8 @@ local function customizeColorLookup(colorLookupName, settingNamePrefix, dayLut, 
 	end
 	
 	defaultConstants[colorLookupName] = colorLookup
-	log(colorLookupName .. "\n" .. stringifyColorLookup(defaultConstants[colorLookupName]))
+	--log(colorLookupName .. "\n" .. stringifyColorLookup(defaultConstants[colorLookupName]))
 end
 
-customizeColorLookup("daytime_color_lookup", gameSettingNamePrefix, vanillaDayLut, vanillaNightLut)
-customizeColorLookup("zoom_to_world_daytime_color_lookup", mapSettingNamePrefix, vanillaDayLut, vanillaNightLut)
+customizeColorLookup("daytime_color_lookup", settingNames.groups.game, vanillaDayLut, vanillaNightLut)
+customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNames.groups.map, vanillaDayLut, vanillaNightLut)
