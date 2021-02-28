@@ -1,8 +1,12 @@
 require("commons")
 
-local identityLut = "identity"
-local vanillaDayLut = identityLut
-local vanillaNightLut = "__core__/graphics/color_luts/lut-night.png"
+local function colorSetting2lut(colorSetting)
+	for _, setting in pairs(colorSettingValues) do
+		if setting.id == colorSetting then
+			return setting.lut
+		end
+	end
+end
 
 local function stringifyColorLookup(colorLookup)
 	local result = "{\n"
@@ -109,11 +113,16 @@ end
 
 local defaultConstants = data.raw["utility-constants"]["default"]
 
-local function customizeColorLookup(colorLookupName, groupName, dayLut, nightLut)
+local function customizeColorLookup(colorLookupName, groupName)
+	local dayColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.day, settingNames.options.colors)].value
+	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.colors)].value
+	local dayLut = colorSetting2lut(dayColorSetting)
+	local nightLut = colorSetting2lut(nightColorSetting)
+
 	local sunsetDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset, settingNames.options.duration)].value * 10000)
 	local nightDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.duration)].value * 10000)
 	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.duration)].value * 10000)
-
+	
 	local colorLookup
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
 		-- Disco mode
@@ -126,9 +135,9 @@ local function customizeColorLookup(colorLookupName, groupName, dayLut, nightLut
 		colorLookup = createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
 	end
 	
+	--log(colorLookupName .. "\n" .. stringifyColorLookup(colorLookup))
 	defaultConstants[colorLookupName] = colorLookup
-	--log(colorLookupName .. "\n" .. stringifyColorLookup(defaultConstants[colorLookupName]))
 end
 
-customizeColorLookup("daytime_color_lookup", settingNames.groups.game, vanillaDayLut, vanillaNightLut)
-customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNames.groups.map, vanillaDayLut, vanillaNightLut)
+customizeColorLookup("daytime_color_lookup", settingNames.groups.game)
+customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNames.groups.map)
