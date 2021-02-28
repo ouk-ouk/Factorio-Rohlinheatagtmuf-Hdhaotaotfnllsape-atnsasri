@@ -114,13 +114,13 @@ end
 local defaultConstants = data.raw["utility-constants"]["default"]
 
 local function customizeColorLookup(colorLookupName, groupName)
-	local dayColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.day, settingNames.options.colors)].value
+	local dayColorSetting =   settings.startup[makeSettingName(groupName, settingNames.targets.day,   settingNames.options.colors)].value
 	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.colors)].value
-	local dayLut = colorSetting2lut(dayColorSetting)
+	local dayLut =   colorSetting2lut(dayColorSetting)
 	local nightLut = colorSetting2lut(nightColorSetting)
 
-	local sunsetDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset, settingNames.options.duration)].value * 10000)
-	local nightDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.duration)].value * 10000)
+	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.duration)].value * 10000)
+	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.duration)].value * 10000)
 	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.duration)].value * 10000)
 	
 	local colorLookup
@@ -139,5 +139,5 @@ local function customizeColorLookup(colorLookupName, groupName)
 	defaultConstants[colorLookupName] = colorLookup
 end
 
-customizeColorLookup("daytime_color_lookup", settingNames.groups.game)
+customizeColorLookup("daytime_color_lookup",               settingNames.groups.game)
 customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNames.groups.map)

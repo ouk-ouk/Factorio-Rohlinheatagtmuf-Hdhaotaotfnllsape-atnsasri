@@ -25,10 +25,10 @@ local function makeAllowedColorValues()
 end
 
 local colorSettings = {
-	{groupName = settingNames.groups.game, default = colorSettingValues.identity, vanilla = colorSettingValues.identity, targetName = settingNames.targets.day},
-	{groupName = settingNames.groups.game, default = colorSettingValues.mod_blueDarkNight, vanilla = colorSettingValues.vanilla_night, targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.map, default = colorSettingValues.identity, vanilla = colorSettingValues.identity, targetName = settingNames.targets.day},
-	{groupName = settingNames.groups.map, default = colorSettingValues.mod_grayNight, vanilla = colorSettingValues.vanilla_mapNight, targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.game, default = colorSettingValues.identity,          vanilla = colorSettingValues.identity,         targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.game, default = colorSettingValues.mod_blueDarkNight, vanilla = colorSettingValues.vanilla_night,    targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.map,  default = colorSettingValues.identity,          vanilla = colorSettingValues.identity,         targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.map,  default = colorSettingValues.mod_grayNight,     vanilla = colorSettingValues.vanilla_mapNight, targetName = settingNames.targets.night},
 }
 for _, setting in ipairs(colorSettings) do
 	optionName = settingNames.options.colors
@@ -50,9 +50,9 @@ local durationSettings = {
 	{groupName = settingNames.groups.game, default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunset},
 	{groupName = settingNames.groups.game, default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
 	{groupName = settingNames.groups.game, default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunrise},
-	{groupName = settingNames.groups.map, default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunset},
-	{groupName = settingNames.groups.map, default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.map, default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise},
+	{groupName = settingNames.groups.map,  default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunset},
+	{groupName = settingNames.groups.map,  default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.map,  default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise},
 }
 for _, setting in ipairs(durationSettings) do
 	optionName = settingNames.options.duration
