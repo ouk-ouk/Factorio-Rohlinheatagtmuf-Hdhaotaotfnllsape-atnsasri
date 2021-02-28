@@ -16,10 +16,15 @@ local function makeOrder(groupName, targetName, optionName)
 	return makeOrderPart(groupName, groupLetters) .. "-" .. makeOrderPart(optionName, optionLetters) .. "-" .. makeOrderPart(targetName, targetLetters)
 end
 
-local function makeAllowedColorValues()
+local function makeAllowedColorValues(targetName)
 	local result = {}
 	for _, setting in pairs(colorSettingValues) do
-		table.insert(result, setting.id)
+		for _, name in ipairs(setting.targetNames) do
+			if targetName == name then
+				table.insert(result, setting.id)
+				break
+			end
+		end
 	end
 	return result
 end
@@ -36,7 +41,7 @@ for _, setting in ipairs(colorSettings) do
 		{
 			type = "string-setting",
 			default_value = setting.default.id,
-			allowed_values = makeAllowedColorValues(),
+			allowed_values = makeAllowedColorValues(setting.targetName),
 			name = makeSettingName(setting.groupName, setting.targetName, optionName),
 			order = makeOrder(setting.groupName, setting.targetName, optionName),
 			setting_type = "startup",

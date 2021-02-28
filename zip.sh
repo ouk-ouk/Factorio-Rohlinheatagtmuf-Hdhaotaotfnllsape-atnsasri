@@ -36,7 +36,6 @@ do
 	cp -a "$file" "$file~"
 	mv "$file~" "$file"
 	sed -i -e 's/^\(.*\)<group>\(.*\)$/\1game\2\n\1map\2/g' "$file"
-	sed -i -e 's/^\(.*\)<day_night>\(.*\)$/\1day\2\n\1night\2/g' "$file"
 done
 zip -9 -r "./${file_name}.zip" "./${file_name}"
 rm -rf "./${file_name}"
