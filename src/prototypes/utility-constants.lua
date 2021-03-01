@@ -77,7 +77,7 @@ local function normalizeColorLookup(colorLookup)
 	return colorLookup
 end
 
-local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
+local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, sunsetLut, nightLut, sunriseLut)
 	if sunsetDuration == 0 and sunriseDuration == 0 and (nightDuration == 0 or nightDuration == 1000000) then
 		if nightDuration == 0 then
 			return {{0, dayLut}}
@@ -85,11 +85,11 @@ local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration,
 			return {{0, nightLut}}
 		end
 	else
-		if sunsetDuration == 0 then
-			sunsetDuration = 1
+		if sunsetDuration < 1 then
+			sunsetDuration = 2
 		end
-		if sunriseDuration == 0 then
-			sunriseDuration = 1
+		if sunriseDuration < 1 then
+			sunriseDuration = 2
 		end
 		if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
 			nightDuration = 1000000 - sunsetDuration - sunriseDuration
@@ -103,8 +103,14 @@ local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration,
 
 		local colorLookup = {}
 		table.insert(colorLookup, {dayEnd, dayLut})
+		if sunsetLut ~= nil then
+			table.insert(colorLookup, {dayEnd + sunsetDuration/2, sunsetLut})
+		end
 		table.insert(colorLookup, {nightStart, nightLut})
 		table.insert(colorLookup, {nightEnd, nightLut})
+		if sunriseLut ~= nil then
+			table.insert(colorLookup, {nightEnd + sunriseDuration/2, sunriseLut})
+		end
 		table.insert(colorLookup, {dayStart, dayLut})
 		
 		return normalizeColorLookup(colorLookup)
@@ -114,10 +120,15 @@ end
 local defaultConstants = data.raw["utility-constants"]["default"]
 
 local function customizeColorLookup(colorLookupName, groupName)
-	local dayColorSetting =   settings.startup[makeSettingName(groupName, settingNames.targets.day,   settingNames.options.colors)].value
-	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.colors)].value
-	local dayLut =   colorSetting2lut(dayColorSetting)
-	local nightLut = colorSetting2lut(nightColorSetting)
+	--todo colors is sunset sunrise
+	local dayColorSetting =     settings.startup[makeSettingName(groupName, settingNames.targets.day,     settingNames.options.colors)].value
+	local sunsetColorSetting =  settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.colors)].value
+	local nightColorSetting =   settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.colors)].value
+	local sunriseColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.colors)].value
+	local dayLut =     colorSetting2lut(dayColorSetting)
+	local sunsetLut =  colorSetting2lut(sunsetColorSetting)
+	local nightLut =   colorSetting2lut(nightColorSetting)
+	local sunriseLut = colorSetting2lut(sunriseColorSetting)
 
 	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.duration)].value * 10000)
 	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.duration)].value * 10000)
@@ -132,10 +143,10 @@ local function customizeColorLookup(colorLookupName, groupName)
 			table.insert(colorLookup, {0.02 * i + 0.01, nightLut})
 		end
 	else
-		colorLookup = createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
+		colorLookup = createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, sunsetLut, nightLut, sunriseLut)
 	end
 	
-	--log(colorLookupName .. "\n" .. stringifyColorLookup(colorLookup))
+	log(colorLookupName .. "\n" .. stringifyColorLookup(colorLookup))
 	defaultConstants[colorLookupName] = colorLookup
 end
 

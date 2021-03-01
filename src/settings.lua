@@ -31,9 +31,13 @@ end
 
 local colorSettings = {
 	{groupName = settingNames.groups.game, default = colorSettingValues.identity,          vanilla = colorSettingValues.identity,         targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.game, default = colorSettingValues.none,              vanilla = colorSettingValues.none,             targetName = settingNames.targets.sunset},
 	{groupName = settingNames.groups.game, default = colorSettingValues.mod_blueDarkNight, vanilla = colorSettingValues.vanilla_night,    targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.game, default = colorSettingValues.none,              vanilla = colorSettingValues.none,             targetName = settingNames.targets.sunrise},
 	{groupName = settingNames.groups.map,  default = colorSettingValues.identity,          vanilla = colorSettingValues.identity,         targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.map,  default = colorSettingValues.none,              vanilla = colorSettingValues.none,             targetName = settingNames.targets.sunset},
 	{groupName = settingNames.groups.map,  default = colorSettingValues.mod_grayNight,     vanilla = colorSettingValues.vanilla_mapNight, targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.map,  default = colorSettingValues.none,              vanilla = colorSettingValues.none,             targetName = settingNames.targets.sunrise},
 }
 for _, setting in ipairs(colorSettings) do
 	optionName = settingNames.options.colors
