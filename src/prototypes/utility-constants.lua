@@ -125,11 +125,10 @@ local function customizeColorLookup(colorLookupName, groupName)
 	
 	local colorLookup
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
-		-- Disco mode
+		-- Acid trip mode
 		colorLookup = {}
-		for i = 0, 49 do
-			table.insert(colorLookup, {0.02 * i, dayLut})
-			table.insert(colorLookup, {0.02 * i + 0.01, nightLut})
+		for i = 0, 50 do
+			table.insert(colorLookup, {0.02 * i, "__" .. modName .. "__/graphics/color_luts/acid/acid-lut-" .. (i%5) .. ".png"})
 		end
 	else
 		colorLookup = createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
