@@ -1,13 +1,5 @@
 require("commons")
 
-local function colorSetting2lut(colorSetting)
-	for _, setting in pairs(colorSettingValues) do
-		if setting.id == colorSetting then
-			return setting.lut
-		end
-	end
-end
-
 local function stringifyColorLookup(colorLookup)
 	local result = "{\n"
 	for _, value in ipairs(colorLookup) do

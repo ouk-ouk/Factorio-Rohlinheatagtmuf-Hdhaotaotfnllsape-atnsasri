@@ -10,8 +10,8 @@ local function makeOrder(groupName, targetName, optionName)
 	local function makeOrderPart(name, letters)
 		return letters[name] .. "[" .. name .. "]"
 	end
-	local groupLetters = {[settingNames.groups.game] = "a", [settingNames.groups.map] = "b"}
-	local targetLetters = {[settingNames.targets.day] = "a", [settingNames.targets.sunset] = "b", [settingNames.targets.night] = "c", [settingNames.targets.sunrise] = "d"}
+	local groupLetters = {[settingNames.groups.game] = "a", [settingNames.groups.map] = "b", [settingNames.groups.nightVision] = "c"}
+	local targetLetters = {[settingNames.targets.day] = "a", [settingNames.targets.sunset] = "b", [settingNames.targets.night] = "c", [settingNames.targets.sunrise] = "d", [settingNames.targets.nightVision] = "e"}
 	local optionLetters = {[settingNames.options.colors] = "a", [settingNames.options.duration] = "b"}
 	return makeOrderPart(groupName, groupLetters) .. "-" .. makeOrderPart(optionName, optionLetters) .. "-" .. makeOrderPart(targetName, targetLetters)
 end
@@ -30,10 +30,11 @@ local function makeAllowedColorValues(targetName)
 end
 
 local colorSettings = {
-	{groupName = settingNames.groups.game, default = colorSettingValues.identity,          vanilla = colorSettingValues.identity,         targetName = settingNames.targets.day},
-	{groupName = settingNames.groups.game, default = colorSettingValues.mod_blueDarkNight, vanilla = colorSettingValues.vanilla_night,    targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.map,  default = colorSettingValues.identity,          vanilla = colorSettingValues.identity,         targetName = settingNames.targets.day},
-	{groupName = settingNames.groups.map,  default = colorSettingValues.mod_grayNight,     vanilla = colorSettingValues.vanilla_mapNight, targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.game,        default = colorSettingValues.identity,            vanilla = colorSettingValues.identity,            targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.game,        default = colorSettingValues.mod_blueDarkNight,   vanilla = colorSettingValues.vanilla_night,       targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.map,         default = colorSettingValues.identity,            vanilla = colorSettingValues.identity,            targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.map,         default = colorSettingValues.mod_grayNight,       vanilla = colorSettingValues.vanilla_mapNight,    targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.nightVision, default = colorSettingValues.vanilla_nightVision, vanilla = colorSettingValues.vanilla_nightVision, targetName = settingNames.targets.nightVision},
 }
 for _, setting in ipairs(colorSettings) do
 	optionName = settingNames.options.colors
