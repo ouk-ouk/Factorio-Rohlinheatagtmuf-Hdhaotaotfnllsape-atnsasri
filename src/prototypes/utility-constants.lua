@@ -125,9 +125,9 @@ local function customizeColorLookup(colorLookupName, groupName)
 	local dayLut =   colorSetting2lut(dayColorSetting)
 	local nightLut = colorSetting2lut(nightColorSetting)
 
-	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.duration)].value * 10000)
-	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.duration)].value * 10000)
-	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.duration)].value * 10000)
+	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.percent)].value * 10000)
+	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.percent)].value * 10000)
+	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.percent)].value * 10000)
 	
 	local colorLookup
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then

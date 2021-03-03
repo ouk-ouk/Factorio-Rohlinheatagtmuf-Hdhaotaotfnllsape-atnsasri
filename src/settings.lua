@@ -12,7 +12,7 @@ local function makeOrder(groupName, targetName, optionName)
 	end
 	local groupLetters = {[settingNames.groups.game] = "a", [settingNames.groups.map] = "b", [settingNames.groups.nightVision] = "c"}
 	local targetLetters = {[settingNames.targets.day] = "a", [settingNames.targets.sunset] = "b", [settingNames.targets.night] = "c", [settingNames.targets.sunrise] = "d", [settingNames.targets.nightVision] = "e"}
-	local optionLetters = {[settingNames.options.colors] = "a", [settingNames.options.duration] = "b"}
+	local optionLetters = {[settingNames.options.colors] = "a", [settingNames.options.percent] = "b"}
 	return makeOrderPart(groupName, groupLetters) .. "-" .. makeOrderPart(optionName, optionLetters) .. "-" .. makeOrderPart(targetName, targetLetters)
 end
 
@@ -52,16 +52,17 @@ for _, setting in ipairs(colorSettings) do
 	})
 end
 
-local durationSettings = {
-	{groupName = settingNames.groups.game, default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunset},
-	{groupName = settingNames.groups.game, default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.game, default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunrise},
-	{groupName = settingNames.groups.map,  default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunset},
-	{groupName = settingNames.groups.map,  default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.map,  default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise},
+local percentSettings = {
+	{groupName = settingNames.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunset},
+	{groupName = settingNames.groups.game,        default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNames.targets.sunrise},
+	{groupName = settingNames.groups.map,         default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunset},
+	{groupName = settingNames.groups.map,         default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.map,         default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise},
+	{groupName = settingNames.groups.nightVision, default = 50.0, vanilla = 50.0, targetName = settingNames.targets.nightVision},
 }
-for _, setting in ipairs(durationSettings) do
-	optionName = settingNames.options.duration
+for _, setting in ipairs(percentSettings) do
+	optionName = settingNames.options.percent
 	data:extend({
 		{
 			type = "double-setting",

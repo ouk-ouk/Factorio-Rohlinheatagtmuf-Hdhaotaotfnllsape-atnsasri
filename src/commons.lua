@@ -16,7 +16,7 @@ settingNames = {
 	},
 	options = {
 		colors = "colors",
-		duration = "duration",
+		percent = "percent",
 	},
 }
 function makeSettingName(groupName, targetName, optionName)
