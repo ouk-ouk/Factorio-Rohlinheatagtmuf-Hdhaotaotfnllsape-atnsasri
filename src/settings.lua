@@ -59,7 +59,7 @@ local percentSettings = {
 	{groupName = settingNames.groups.map,         default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunset},
 	{groupName = settingNames.groups.map,         default = 30.0, vanilla = 10.0, targetName = settingNames.targets.night},
 	{groupName = settingNames.groups.map,         default = 15.0, vanilla = 20.0, targetName = settingNames.targets.sunrise},
-	{groupName = settingNames.groups.nightVision, default = 50.0, vanilla = 50.0, targetName = settingNames.targets.nightVision},
+	{groupName = settingNames.groups.nightVision, default = 70.0, vanilla = 50.0, targetName = settingNames.targets.nightVision},
 }
 for _, setting in ipairs(percentSettings) do
 	optionName = settingNames.options.percent
