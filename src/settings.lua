@@ -30,11 +30,11 @@ local function makeAllowedColorValues(targetName)
 end
 
 local colorSettings = {
-	{groupName = settingNames.groups.game,        default = colorSettingValues.identity,            vanilla = colorSettingValues.identity,            targetName = settingNames.targets.day},
-	{groupName = settingNames.groups.game,        default = colorSettingValues.mod_blueDarkNight,   vanilla = colorSettingValues.vanilla_night,       targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.map,         default = colorSettingValues.identity,            vanilla = colorSettingValues.identity,            targetName = settingNames.targets.day},
-	{groupName = settingNames.groups.map,         default = colorSettingValues.mod_grayNight,       vanilla = colorSettingValues.vanilla_mapNight,    targetName = settingNames.targets.night},
-	{groupName = settingNames.groups.nightVision, default = colorSettingValues.vanilla_nightVision, vanilla = colorSettingValues.vanilla_nightVision, targetName = settingNames.targets.nightVision},
+	{groupName = settingNames.groups.game,        default = colorSettingValues.identity,             vanilla = colorSettingValues.identity,            targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.game,        default = colorSettingValues.mod_blueDarkNight,    vanilla = colorSettingValues.vanilla_night,       targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.map,         default = colorSettingValues.identity,             vanilla = colorSettingValues.identity,            targetName = settingNames.targets.day},
+	{groupName = settingNames.groups.map,         default = colorSettingValues.mod_grayNight,        vanilla = colorSettingValues.vanilla_mapNight,    targetName = settingNames.targets.night},
+	{groupName = settingNames.groups.nightVision, default = colorSettingValues.mod_greenNightVision, vanilla = colorSettingValues.vanilla_nightVision, targetName = settingNames.targets.nightVision},
 }
 for _, setting in ipairs(colorSettings) do
 	optionName = settingNames.options.colors
