@@ -1,4 +1,4 @@
-modName = "Rohlinheatagtmuf Hdhaotaotfnllsape'atnsasri"
+modName = "Rohlinheatagtmuf_Hdhaotaotfnllsape-atnsasri"
 
 settingNamePrefix = modName .. "-"
 settingNames = {
