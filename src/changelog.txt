@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.101.0
+Date: 5. 03. 2021
+  Update:
+    - First version for Factorio 1.1.x.
+  Features:
+    - Option to set color and visual lenght of day and night.
+    - Option to set color and visual lenght of day and night on zoom-to-map view.
+    - Option to set color and turn on/off point for nightvision.
+  Locale:
+    - Polish localization (without the mod name because I'm not going to translate this (yes, I know I was the one who wrote the original)).
