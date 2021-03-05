@@ -6,6 +6,10 @@
     "contact": "",
     "homepage": "",
     "factorio_version": "1.1",
-    "dependencies": ["base >= 1.1"],
-	"description": "Allows to adjust length of the day and choose brightness and color of the night, zoom-to-map, night-vision and so on.\n(This is a purely graphical change which does not affect the game mechanics.)\n\nFactory moves fast,\ngrowth and maintenance required,\nnature does not let."
+    "dependencies": [
+        "base >= 1.1",
+        "!DarkNight",
+        "!VilsClearNightvision"
+    ],
+    "description": "Allows to adjust length of the day and choose brightness and color of the night, zoom-to-map, night-vision and so on.\n(This is a purely graphical change which does not affect the game mechanics.)\n\nFactory moves fast,\ngrowth and maintenance required,\nnature does not let."
 }
