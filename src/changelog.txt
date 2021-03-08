@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+  Features:
+    - Allowed using all LUTs for every setting.
+  Info:
+    - Added more information and warnings to description of some settings.
+---------------------------------------------------------------------------------------------------
 Version: 0.101.2
 Date: 5. 03. 2021
   Bugfixes:
