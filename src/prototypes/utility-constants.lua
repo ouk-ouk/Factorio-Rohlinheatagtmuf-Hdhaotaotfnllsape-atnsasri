@@ -1,5 +1,6 @@
 require("commons")
 
+-- Color lookup utils
 local function stringifyColorLookup(colorLookup)
 	local result = "{\n"
 	for _, value in ipairs(colorLookup) do
@@ -117,6 +118,7 @@ local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration,
 	end
 end
 
+-- Color lookups
 local defaultConstants = data.raw["utility-constants"]["default"]
 
 local function customizeColorLookup(colorLookupName, groupName)
@@ -134,7 +136,7 @@ local function customizeColorLookup(colorLookupName, groupName)
 		-- Acid trip mode
 		colorLookup = {}
 		for i = 0, 50 do
-			table.insert(colorLookup, {0.02 * i, "__" .. modName .. "__/graphics/color_luts/acid/acid-lut-" .. (i%5) .. ".png"})
+			table.insert(colorLookup, {0.02 * i, "__" .. modName .. "__/graphics/color_luts/acid/acid-lut-" .. (i % 5) .. ".png"})
 		end
 	else
 		colorLookup = createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)

@@ -1,8 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.101.3
+Date: 9. 03. 2021
   Features:
     - Allowed using all LUTs for every setting.
   Info:
     - Added more information and warnings to description of some settings.
+    - Reorganised options to make it easier to find ones for day/night/night-vision.
 ---------------------------------------------------------------------------------------------------
 Version: 0.101.2
 Date: 5. 03. 2021

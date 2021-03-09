@@ -1,5 +1,6 @@
 require("commons")
 
+-- Night vision
 local nightVisionEquipment = data.raw["night-vision-equipment"]["night-vision-equipment"]
 
 local nightVisionColorSetting = settings.startup[makeSettingName(settingNames.groups.nightVision, settingNames.targets.nightVision, settingNames.options.colors)].value

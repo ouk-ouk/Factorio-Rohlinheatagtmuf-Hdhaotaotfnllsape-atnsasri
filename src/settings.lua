@@ -19,8 +19,12 @@ end
 
 -- LUT settings
 local allowedColorValues = {}
-for _, setting in pairs(colorSettingValues) do
-	table.insert(allowedColorValues, setting.id)
+for _, targetName in pairs(settingNames.targets) do
+	for _, setting in pairs(colorSettingValues) do
+		if setting.targetName == targetName then
+			table.insert(allowedColorValues, setting.id)
+		end
+	end
 end
 
 local colorSettings = {
