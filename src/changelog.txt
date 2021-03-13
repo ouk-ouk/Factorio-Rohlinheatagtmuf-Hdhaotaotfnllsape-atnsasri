@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.101.4
+Date: 13. 03. 2021
+  Info:
+    - Changed the internal title of the mod because of the game's not entirely successful attempt to limit the title lenght. (the new name won't be visible in the game, maybe it will in the mod portal)
+---------------------------------------------------------------------------------------------------
 Version: 0.101.3
 Date: 9. 03. 2021
   Features:
