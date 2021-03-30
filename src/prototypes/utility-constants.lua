@@ -54,19 +54,6 @@ local function deduplicateColorLookup(colorLookup)
 	return result
 end
 
-local function tieUpLooseColorLookupEnds(colorLookup)
-	if #colorLookup >= 2 and (colorLookup[1][1] ~= 0 or colorLookup[#colorLookup][1] ~= 1) and colorLookup[1][2] ~= colorLookup[#colorLookup][2] then
-		result = {}
-		for _, value in ipairs(colorLookup) do
-			table.insert(result, value)
-		end
-		table.insert(result, {colorLookup[1][1] + 1000000, colorLookup[1][2]})
-		return result
-	else
-		return colorLookup
-	end
-end
-
 local function rescaleColorLookup(colorLookup)
 	local result = {}
 	for _, value in ipairs(colorLookup) do
@@ -79,7 +66,6 @@ local function normalizeColorLookup(colorLookup)
 	colorLookup = wrapColorLookupTimestamps(colorLookup)
 	colorLookup = sortColorLookup(colorLookup)
 	colorLookup = deduplicateColorLookup(colorLookup)
-	colorLookup = tieUpLooseColorLookupEnds(colorLookup)
 	colorLookup = rescaleColorLookup(colorLookup)
 	return colorLookup
 end
