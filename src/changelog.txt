@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.101.6
+Date: 11. 04. 2021
+  Bugfixes:
+    - Fixed some outdates names in translations. (References to options that had changed names.)
+---------------------------------------------------------------------------------------------------
 Version: 0.101.5
 Date: 30. 03. 2021
   Bugfixes:
