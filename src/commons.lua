@@ -44,6 +44,8 @@ colorSettingValues = {
 	mod_darkNight =           {id = "mod_darkNight",           lut = "__" .. modName .. "__/graphics/color_luts/dark-night-lut.png",           targetName = settingNames.targets.night},
 	mod_grayDarkNight =       {id = "mod_grayDarkNight",       lut = "__" .. modName .. "__/graphics/color_luts/gray-dark-night-lut.png",      targetName = settingNames.targets.night},
 	mod_blueDarkNight =       {id = "mod_blueDarkNight",       lut = "__" .. modName .. "__/graphics/color_luts/blue-dark-night-lut.png",      targetName = settingNames.targets.night},
+	mod_imprDarkNight =       {id = "mod_imprDarkNight",       lut = "__" .. modName .. "__/graphics/color_luts/impr-dark-night-lut.png",      targetName = settingNames.targets.night},
+	mod_imprGrayDarkNight =   {id = "mod_imprGrayDarkNight",   lut = "__" .. modName .. "__/graphics/color_luts/impr-gray-dark-night-lut.png", targetName = settingNames.targets.night},
 	mod_black =               {id = "mod_black",               lut = "__" .. modName .. "__/graphics/color_luts/black-lut.png",                targetName = settingNames.targets.night},
 	mod_greenishNightVision = {id = "mod_greenishNightVision", lut = "__" .. modName .. "__/graphics/color_luts/greenish-nightvision-lut.png", targetName = settingNames.targets.nightVision},
 	mod_grayNightVision =     {id = "mod_grayNightVision",     lut = "__" .. modName .. "__/graphics/color_luts/gray-nightvision-lut.png",     targetName = settingNames.targets.nightVision},
