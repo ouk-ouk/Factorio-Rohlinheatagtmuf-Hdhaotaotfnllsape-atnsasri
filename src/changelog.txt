@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.101.2
+Date: 05. 07. 2022
+  Features:
+    - Added "AAI Industry" to the list of optional mods to force it to load first. This will ensure its LUTs will be overridden by this mod and not the opposite.
+---------------------------------------------------------------------------------------------------
 Version: 1.101.1
 Date: 14. 09. 2021
   Info:
@@ -14,7 +19,7 @@ Date: 11. 04. 2021
 Version: 0.101.6
 Date: 11. 04. 2021
   Bugfixes:
-    - Fixed some outdates names in translations. (References to options that had changed names.)
+    - Fixed some outdated names in translations. (References to options that had changed names.)
 ---------------------------------------------------------------------------------------------------
 Version: 0.101.5
 Date: 30. 03. 2021
@@ -24,7 +29,7 @@ Date: 30. 03. 2021
 Version: 0.101.4
 Date: 13. 03. 2021
   Info:
-    - Changed the internal title of the mod because of the game's not entirely successful attempt to limit the title lenght. (the new name won't be visible in the game, maybe it will in the mod portal)
+    - Changed the internal title of the mod because of the game's not entirely successful attempt to limit the title length. (the new name won't be visible in the game, maybe it will in the mod portal)
 ---------------------------------------------------------------------------------------------------
 Version: 0.101.3
 Date: 9. 03. 2021
