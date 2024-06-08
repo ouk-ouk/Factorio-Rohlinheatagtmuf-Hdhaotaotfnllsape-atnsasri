@@ -1,6 +1,6 @@
 {
     "name": "Rohlinheatagtmuf_Hdhaotaotfnllsape-atnsasri",
-    "version": "1.101.2",
+    "version": "1.101.3",
     "title": "\"Rohlinheatagtmuf Hdhaotaotfnllsape'atnsasri\" - the beginning of the ancient ethernal darkness curse",
     "author": "<NO_NAME>",
     "contact": "",
@@ -8,7 +8,7 @@
     "factorio_version": "1.1",
     "dependencies": [
         "base >= 1.1",
-        "?aai-industry",
+        "(?)aai-industry",
         "!DarkNight",
         "!VilsClearNightvision",
         "!dark-nights"
