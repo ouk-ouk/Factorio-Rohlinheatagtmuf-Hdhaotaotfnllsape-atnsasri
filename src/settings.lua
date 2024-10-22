@@ -89,7 +89,7 @@ for _, setting in ipairs(percentSettings) do
 			localised_description = {
 				localeDescriptionPrefix .. makeSettingName(setting.groupName, "", optionName),
 				{localeSettingDescriptionPrefix .. setting.targetName},
-				setting.default, setting.vanilla
+				tostring(setting.default), tostring(setting.vanilla)
 			},
 		}
 	})
