@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.210.1
+Date: 28. 06. 2026
+  Features:
+    - Removed conflicting mods that are no longer developed and they have no version for Factorio 2.0.
+---------------------------------------------------------------------------------------------------
 Version: 1.210.0
 Date: 26. 06. 2026
   Update:
