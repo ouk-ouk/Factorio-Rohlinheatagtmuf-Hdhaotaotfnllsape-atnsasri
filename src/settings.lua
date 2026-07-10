@@ -60,17 +60,17 @@ data:extend({
 -- LUT settings
 local allowedColorValues = {}
 for _, targetName in pairs(settingNamesParts.targets) do
-	for _, setting in pairs(colorSettingValues) do
+	for id, setting in pairs(colorSettingValues) do
 		if setting.targetName == targetName then
-			table.insert(allowedColorValues, setting.id)
+			table.insert(allowedColorValues, id)
 		end
 	end
 end
 
 local colorSettings = {
-	{groupName = settingNamesParts.groups.game,        default = colorSettingValues.identity,             vanilla = colorSettingValues.identity,            targetName = settingNamesParts.targets.day},
-	{groupName = settingNamesParts.groups.game,        default = colorSettingValues.mod_imprDarkNight,    vanilla = colorSettingValues.vanilla_night,       targetName = settingNamesParts.targets.night},
-	{groupName = settingNamesParts.groups.nightVision, default = colorSettingValues.mod_greenNightVision, vanilla = colorSettingValues.vanilla_nightVision, targetName = settingNamesParts.targets.nightVision},
+	{groupName = settingNamesParts.groups.game,        default = "identity",             vanilla = "identity",            targetName = settingNamesParts.targets.day},
+	{groupName = settingNamesParts.groups.game,        default = "mod_imprDarkNight",    vanilla = "vanilla_night",       targetName = settingNamesParts.targets.night},
+	{groupName = settingNamesParts.groups.nightVision, default = "mod_greenNightVision", vanilla = "vanilla_nightVision", targetName = settingNamesParts.targets.nightVision},
 }
 
 for _, setting in ipairs(colorSettings) do
@@ -78,7 +78,7 @@ for _, setting in ipairs(colorSettings) do
 	data:extend({
 		{
 			type = "string-setting",
-			default_value = setting.default.id,
+			default_value = setting.default,
 			allowed_values = allowedColorValues,
 			name = makeOtherSettingName(setting.groupName, setting.targetName, optionName),
 			order = makeOtherOrder(setting.groupName, setting.targetName, optionName),
@@ -90,8 +90,8 @@ for _, setting in ipairs(colorSettings) do
 			localised_description = {
 				localeDescriptionPrefix .. makeOtherSettingName(setting.groupName, "", optionName),
 				{localeSettingDescriptionPrefix .. setting.targetName},
-				{localeSettingValueNamePrefix .. makeOtherSettingName(setting.groupName, setting.targetName, optionName) .. "-" .. setting.default.id},
-				{localeSettingValueNamePrefix .. makeOtherSettingName(setting.groupName, setting.targetName, optionName) .. "-" .. setting.vanilla.id},
+				{localeSettingValueNamePrefix .. makeOtherSettingName(setting.groupName, setting.targetName, optionName) .. "-" .. setting.default},
+				{localeSettingValueNamePrefix .. makeOtherSettingName(setting.groupName, setting.targetName, optionName) .. "-" .. setting.vanilla},
 				setting.targetName == settingNamesParts.targets.day and {localeDescriptionPrefix .. makeOtherSettingName("darkDayWarning")} or ""
 			},
 		}

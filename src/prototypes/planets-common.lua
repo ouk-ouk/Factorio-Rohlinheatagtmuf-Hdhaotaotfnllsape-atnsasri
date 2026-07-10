@@ -1,7 +1,7 @@
 require("commons")
 
 -- Color lookup utils
-local function stringifyColorLookup(colorLookup)
+function stringifyColorLookup(colorLookup)
 	local result = "{\n"
 	for _, value in ipairs(colorLookup) do
 		result = result .. "\t{" .. value[1] .. ", \"" .. value[2] .. "\"}\n"
@@ -107,8 +107,8 @@ end
 function makeColorLookup(groupName)
 	local dayColorSetting =   settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.day,   settingNamesParts.options.colors)].value
 	local nightColorSetting = settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.night, settingNamesParts.options.colors)].value
-	local dayLut =   colorSetting2lut(dayColorSetting)
-	local nightLut = colorSetting2lut(nightColorSetting)
+	local dayLut =   colorSettingValues[dayColorSetting].lut
+	local nightLut = colorSettingValues[nightColorSetting].lut
 
 	local sunsetDuration =  math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.sunset,  settingNamesParts.options.percent)].value * 10000)
 	local nightDuration =   math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.night,   settingNamesParts.options.percent)].value * 10000)

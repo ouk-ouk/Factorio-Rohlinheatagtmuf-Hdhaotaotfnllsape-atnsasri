@@ -4,7 +4,7 @@ require("commons")
 local nightVisionEquipment = data.raw["night-vision-equipment"]["night-vision-equipment"]
 
 local nightVisionColorSetting = settings.startup[makeOtherSettingName(settingNamesParts.groups.nightVision, settingNamesParts.targets.nightVision, settingNamesParts.options.colors)].value
-local nightVisionLut = colorSetting2lut(nightVisionColorSetting)
+local nightVisionLut = colorSettingValues[nightVisionColorSetting].lut
 
 local nightVisionTreshold = settings.startup[makeOtherSettingName(settingNamesParts.groups.nightVision, settingNamesParts.targets.nightVision, settingNamesParts.options.percent)].value / 100
 
