@@ -104,15 +104,15 @@ local function createNauvisColorLookup(sunsetDuration, nightDuration, sunriseDur
 	end
 end
 
-local function makeColorLookup(groupName)
-	local dayColorSetting =   settings.startup[makeSettingName(groupName, settingNamesParts.targets.day,   settingNamesParts.options.colors)].value
-	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNamesParts.targets.night, settingNamesParts.options.colors)].value
+function makeColorLookup(groupName)
+	local dayColorSetting =   settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.day,   settingNamesParts.options.colors)].value
+	local nightColorSetting = settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.night, settingNamesParts.options.colors)].value
 	local dayLut =   colorSetting2lut(dayColorSetting)
 	local nightLut = colorSetting2lut(nightColorSetting)
 
-	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNamesParts.targets.sunset,  settingNamesParts.options.percent)].value * 10000)
-	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNamesParts.targets.night,   settingNamesParts.options.percent)].value * 10000)
-	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNamesParts.targets.sunrise, settingNamesParts.options.percent)].value * 10000)
+	local sunsetDuration =  math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.sunset,  settingNamesParts.options.percent)].value * 10000)
+	local nightDuration =   math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.night,   settingNamesParts.options.percent)].value * 10000)
+	local sunriseDuration = math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.sunrise, settingNamesParts.options.percent)].value * 10000)
 
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
 		-- Acid trip mode
@@ -123,19 +123,5 @@ local function makeColorLookup(groupName)
 		return colorLookup
 	else
 		return createNauvisColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
-	end
-end
-
--- Default color lookups
-data.raw["utility-constants"]["default"]["daytime_color_lookup"] = makeColorLookup(settingNamesParts.groups.game)
-
--- Color lookups for specific planets
-for _, planet in pairs(data.raw.planet) do
-	local srp = planet.surface_render_parameters
-	if srp then
-		local dnc_color_lookup = srp.day_night_cycle_color_lookup
-		if dnc_color_lookup then
-			srp.day_night_cycle_color_lookup = makeColorLookup(settingNamesParts.groups.game)
-		end
 	end
 end

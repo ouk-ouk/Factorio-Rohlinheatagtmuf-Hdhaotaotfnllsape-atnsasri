@@ -1,2 +1,2 @@
-require("prototypes.utility-constants")
-require("prototypes.equipment")
+require("prototypes.planets")
+require("prototypes.night-vision")

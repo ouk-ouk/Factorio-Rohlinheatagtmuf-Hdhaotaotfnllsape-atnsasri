@@ -1,6 +1,24 @@
 -- General
 modName = "Rohlinheatagtmuf_Hdhaotaotfnllsape-atnsasri"
 
+-- Known planets
+knownPlanets = {"nauvis"}
+if mods["space-age"] then
+	table.insert(knownPlanets, "vulcanus")
+	table.insert(knownPlanets, "gleba")
+	table.insert(knownPlanets, "fulgora")
+	table.insert(knownPlanets, "aquilo")
+end
+
+function isPlanetKnown(planet)
+	for _, knownPlanet in pairs(knownPlanets) do
+		if knownPlanet == planet then
+			return true
+		end
+	end
+	return false
+end
+
 -- Setting names
 settingNamePrefix = modName .. "-"
 settingNamesParts = {
@@ -21,7 +39,15 @@ settingNamesParts = {
 	},
 }
 
-function makeSettingName(groupName, targetName, optionName)
+function makePlanetSettingName(planet)
+	if planet then
+		return settingNamePrefix .. "planet_" .. planet
+	else
+		return settingNamePrefix .. "unknown_planets"
+	end
+end
+
+function makeOtherSettingName(groupName, targetName, optionName)
 	result = settingNamePrefix .. groupName
 	for _, thingy in ipairs({targetName, optionName}) do
 		if thingy ~= "" then
