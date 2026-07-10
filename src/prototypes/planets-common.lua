@@ -70,7 +70,7 @@ local function normalizeColorLookup(colorLookup)
 	return colorLookup
 end
 
-local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
+local function createNauvisColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
 	if sunsetDuration == 0 and sunriseDuration == 0 and (nightDuration == 0 or nightDuration == 1000000) then
 		if nightDuration == 0 then
 			return {{0, dayLut}}
@@ -88,7 +88,7 @@ local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration,
 			nightDuration = 1000000 - sunsetDuration - sunriseDuration
 		end
 		local dayDuration = 1000000 - sunsetDuration - nightDuration - sunriseDuration
-		
+
 		local nightStart = 500000 - math.floor(nightDuration / 2)
 		local nightEnd = 500000 + math.floor((nightDuration+1) / 2)
 		local dayStart = nightEnd + sunriseDuration
@@ -99,38 +99,29 @@ local function createColorLookup(sunsetDuration, nightDuration, sunriseDuration,
 		table.insert(colorLookup, {nightStart, nightLut})
 		table.insert(colorLookup, {nightEnd, nightLut})
 		table.insert(colorLookup, {dayStart, dayLut})
-		
+
 		return normalizeColorLookup(colorLookup)
 	end
 end
 
--- Color lookups
-local defaultConstants = data.raw["utility-constants"]["default"]
-
-local function customizeColorLookup(colorLookupName, groupName)
-	local dayColorSetting =   settings.startup[makeSettingName(groupName, settingNames.targets.day,   settingNames.options.colors)].value
-	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.colors)].value
+function makeColorLookup(groupName)
+	local dayColorSetting =   settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.day,   settingNamesParts.options.colors)].value
+	local nightColorSetting = settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.night, settingNamesParts.options.colors)].value
 	local dayLut =   colorSetting2lut(dayColorSetting)
 	local nightLut = colorSetting2lut(nightColorSetting)
 
-	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.percent)].value * 10000)
-	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.percent)].value * 10000)
-	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.percent)].value * 10000)
-	
-	local colorLookup
+	local sunsetDuration =  math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.sunset,  settingNamesParts.options.percent)].value * 10000)
+	local nightDuration =   math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.night,   settingNamesParts.options.percent)].value * 10000)
+	local sunriseDuration = math.floor(settings.startup[makeOtherSettingName(groupName, settingNamesParts.targets.sunrise, settingNamesParts.options.percent)].value * 10000)
+
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
 		-- Acid trip mode
-		colorLookup = {}
+		local colorLookup = {}
 		for i = 0, 50 do
 			table.insert(colorLookup, {0.02 * i, "__" .. modName .. "__/graphics/color_luts/acid/acid-lut-" .. (i % 5) .. ".png"})
 		end
+		return colorLookup
 	else
-		colorLookup = createColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
+		return createNauvisColorLookup(sunsetDuration, nightDuration, sunriseDuration, dayLut, nightLut)
 	end
-	
-	--log(colorLookupName .. "\n" .. stringifyColorLookup(colorLookup))
-	defaultConstants[colorLookupName] = colorLookup
 end
-
-customizeColorLookup("daytime_color_lookup",               settingNames.groups.game)
-customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNames.groups.map)
