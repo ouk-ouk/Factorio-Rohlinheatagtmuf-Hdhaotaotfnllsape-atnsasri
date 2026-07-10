@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.200.0
+Date: 10. 07. 2026
+  Update:
+    - First version with support for Factorio Space Age (2.0).
+  Features:
+    - Added individual options to switch this mod on/off for each planet.
+    - Removed a bunch of options that are no longer relevant in Factorio 2.0.
+---------------------------------------------------------------------------------------------------
 Version: 1.200.4
 Date: 28. 06. 2026
   Features:
