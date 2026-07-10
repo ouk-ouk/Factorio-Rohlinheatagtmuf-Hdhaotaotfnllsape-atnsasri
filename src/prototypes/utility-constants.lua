@@ -108,14 +108,14 @@ end
 local defaultConstants = data.raw["utility-constants"]["default"]
 
 local function customizeColorLookup(colorLookupName, groupName)
-	local dayColorSetting =   settings.startup[makeSettingName(groupName, settingNames.targets.day,   settingNames.options.colors)].value
-	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNames.targets.night, settingNames.options.colors)].value
+	local dayColorSetting =   settings.startup[makeSettingName(groupName, settingNamesParts.targets.day,   settingNamesParts.options.colors)].value
+	local nightColorSetting = settings.startup[makeSettingName(groupName, settingNamesParts.targets.night, settingNamesParts.options.colors)].value
 	local dayLut =   colorSetting2lut(dayColorSetting)
 	local nightLut = colorSetting2lut(nightColorSetting)
 
-	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunset,  settingNames.options.percent)].value * 10000)
-	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.night,   settingNames.options.percent)].value * 10000)
-	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNames.targets.sunrise, settingNames.options.percent)].value * 10000)
+	local sunsetDuration =  math.floor(settings.startup[makeSettingName(groupName, settingNamesParts.targets.sunset,  settingNamesParts.options.percent)].value * 10000)
+	local nightDuration =   math.floor(settings.startup[makeSettingName(groupName, settingNamesParts.targets.night,   settingNamesParts.options.percent)].value * 10000)
+	local sunriseDuration = math.floor(settings.startup[makeSettingName(groupName, settingNamesParts.targets.sunrise, settingNamesParts.options.percent)].value * 10000)
 	
 	local colorLookup
 	if sunsetDuration + nightDuration + sunriseDuration > 1000000 then
@@ -132,5 +132,5 @@ local function customizeColorLookup(colorLookupName, groupName)
 	defaultConstants[colorLookupName] = colorLookup
 end
 
-customizeColorLookup("daytime_color_lookup",               settingNames.groups.game)
-customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNames.groups.map)
+customizeColorLookup("daytime_color_lookup",               settingNamesParts.groups.game)
+customizeColorLookup("zoom_to_world_daytime_color_lookup", settingNamesParts.groups.map)
