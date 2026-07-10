@@ -6,7 +6,6 @@ settingNamePrefix = modName .. "-"
 settingNamesParts = {
 	groups = {
 		game = "game",
-		map = "map",
 		nightVision = "nightVision",
 	},
 	targets = {

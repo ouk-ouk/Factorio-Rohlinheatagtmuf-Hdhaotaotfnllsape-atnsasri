@@ -127,9 +127,7 @@ local function makeColorLookup(groupName)
 end
 
 -- Default color lookups
-local defaultConstants = data.raw["utility-constants"]["default"]
-defaultConstants["daytime_color_lookup"] = makeColorLookup(settingNamesParts.groups.game)
-defaultConstants["zoom_to_world_daytime_color_lookup"] = makeColorLookup(settingNamesParts.groups.map)
+data.raw["utility-constants"]["default"]["daytime_color_lookup"] = makeColorLookup(settingNamesParts.groups.game)
 
 -- Color lookups for specific planets
 for _, planet in pairs(data.raw.planet) do

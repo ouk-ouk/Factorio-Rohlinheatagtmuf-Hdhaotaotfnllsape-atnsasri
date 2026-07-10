@@ -11,7 +11,7 @@ local function makeOrder(groupName, targetName, optionName)
 	local function makeOrderPart(name, letters)
 		return letters[name] .. "[" .. name .. "]"
 	end
-	local groupLetters = {[settingNamesParts.groups.game] = "a", [settingNamesParts.groups.map] = "b", [settingNamesParts.groups.nightVision] = "c"}
+	local groupLetters = {[settingNamesParts.groups.game] = "a", [settingNamesParts.groups.nightVision] = "b"}
 	local targetLetters = {[settingNamesParts.targets.day] = "a", [settingNamesParts.targets.sunset] = "b", [settingNamesParts.targets.night] = "c", [settingNamesParts.targets.sunrise] = "d", [settingNamesParts.targets.nightVision] = "e"}
 	local optionLetters = {[settingNamesParts.options.colors] = "a", [settingNamesParts.options.percent] = "b"}
 	return makeOrderPart(groupName, groupLetters) .. "-" .. makeOrderPart(optionName, optionLetters) .. "-" .. makeOrderPart(targetName, targetLetters)
@@ -30,8 +30,6 @@ end
 local colorSettings = {
 	{groupName = settingNamesParts.groups.game,        default = colorSettingValues.identity,             vanilla = colorSettingValues.identity,            targetName = settingNamesParts.targets.day},
 	{groupName = settingNamesParts.groups.game,        default = colorSettingValues.mod_imprDarkNight,    vanilla = colorSettingValues.vanilla_night,       targetName = settingNamesParts.targets.night},
-	{groupName = settingNamesParts.groups.map,         default = colorSettingValues.identity,             vanilla = colorSettingValues.identity,            targetName = settingNamesParts.targets.day},
-	{groupName = settingNamesParts.groups.map,         default = colorSettingValues.mod_grayNight,        vanilla = colorSettingValues.vanilla_mapNight,    targetName = settingNamesParts.targets.night},
 	{groupName = settingNamesParts.groups.nightVision, default = colorSettingValues.mod_greenNightVision, vanilla = colorSettingValues.vanilla_nightVision, targetName = settingNamesParts.targets.nightVision},
 }
 
@@ -65,9 +63,6 @@ local percentSettings = {
 	{groupName = settingNamesParts.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNamesParts.targets.sunset},
 	{groupName = settingNamesParts.groups.game,        default = 30.0, vanilla = 10.0, targetName = settingNamesParts.targets.night},
 	{groupName = settingNamesParts.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNamesParts.targets.sunrise},
-	{groupName = settingNamesParts.groups.map,         default = 15.0, vanilla = 20.0, targetName = settingNamesParts.targets.sunset},
-	{groupName = settingNamesParts.groups.map,         default = 30.0, vanilla = 10.0, targetName = settingNamesParts.targets.night},
-	{groupName = settingNamesParts.groups.map,         default = 15.0, vanilla = 20.0, targetName = settingNamesParts.targets.sunrise},
 	{groupName = settingNamesParts.groups.nightVision, default = 70.0, vanilla = 50.0, targetName = settingNamesParts.targets.nightVision},
 }
 
