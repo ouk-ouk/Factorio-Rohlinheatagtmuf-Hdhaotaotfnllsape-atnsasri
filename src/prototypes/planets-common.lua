@@ -63,7 +63,7 @@ local function modifyTimes(colorLookup, knownPlanet, timeChangeSetting)
 
 	-- Find current boundary times
 	local oldBoundaries = findBoundaryTimes(colorLookup, knownPlanet)
-	
+
 	-- Calculate new boundary times
 	local nightDuration1 = nightDuration / 2
 	local nightDuration2 = nightDuration / 2
@@ -97,12 +97,12 @@ local function modifyTimes(colorLookup, knownPlanet, timeChangeSetting)
 		0.5 + nightDuration2,
 		0.5 + nightDuration2 + sunriseDuration,
 	}
-	
+
 	-- Check if new boundaries differ
 	if oldBoundaries[1] == newBoundaries[1] and oldBoundaries[2] == newBoundaries[2] and oldBoundaries[3] == newBoundaries[3] and oldBoundaries[4] == newBoundaries[4] then
 		return colorLookup
 	end
-	
+
 	-- Squash & stretch
 	newColorLookup = {}
 	for _, oldLutInfo in pairs(colorLookup) do
@@ -132,11 +132,11 @@ local function modifyColors(colorLookup, knownPlanet, colorChangeSetting)
 	if not colorChangeSetting.changeDay and not colorChangeSetting.changeNight then
 		return colorLookup
 	end
-	
+
 	-- Load color settings
 	local dayLut = colorSettingValues[settings.startup[makeOtherSettingId(settingNamesParts.groups.game, settingNamesParts.targets.day, settingNamesParts.options.colors)].value].lut
 	local nightLut = colorSettingValues[settings.startup[makeOtherSettingId(settingNamesParts.groups.game, settingNamesParts.targets.night, settingNamesParts.options.colors)].value].lut
-	
+
 	-- Make LUT table
 	local newColorLookup = {}
 	for _, lutInfo in pairs(colorLookup) do
@@ -157,7 +157,7 @@ local function modifyColors(colorLookup, knownPlanet, colorChangeSetting)
 		end
 		table.insert(newColorLookup, {lutInfo[1], newLut})
 	end
-	
+
 	-- Success
 	return newColorLookup
 end
@@ -169,7 +169,7 @@ function modifyLUTsForPlanet(planet, knownPlanet, timeChangeSetting, colorChange
 	else
 		oldColorLookup = getDefaultColorLookup()
 	end
-	
+
 	local newColorLookup
 	if colorChangeSetting.vanillaLuts then
 		newColorLookup = getDefaultColorLookup()
