@@ -21,38 +21,80 @@ end
 
 local planetOrderMain = "a"
 local currentPlanetOrder = "a"
+
+local defaultColor = "planet_both"
+local defaultTime = "proportional"
 for _, knownPlanet in pairs(knownPlanets) do
 	data:extend({
 		{
-			type = "bool-setting",
-			default_value = true,
-			name = makePlanetSettingName(knownPlanet),
-			order = planetOrderMain .. currentPlanetOrder .. '-[' .. knownPlanet .. ']',
+			type = "string-setting",
+			default_value = defaultColor,
+			allowed_values = colorChangeSettingNames,
+			name = makeColorSettingId(knownPlanet.name),
+			order = planetOrderMain .. currentPlanetOrder .. "a" .. "-[" .. knownPlanet.name .. "-color]",
 			setting_type = "startup",
 			localised_name = {
-				localeSettingNamePrefix .. "planet",
-				knownPlanet:sub(1, 1):upper() .. knownPlanet:sub(2),
+				localeSettingNamePrefix .. "planet_color",
+				knownPlanet.name:sub(1, 1):upper() .. knownPlanet.name:sub(2),
 			},
 			localised_description = {
-				localeSettingDescriptionPrefix .. "planet",
-				knownPlanet:sub(1, 1):upper() .. knownPlanet:sub(2),
+				localeSettingDescriptionPrefix .. "planet_color",
+				knownPlanet.name:sub(1, 1):upper() .. knownPlanet.name:sub(2),
+			},
+		}
+	})
+	data:extend({
+		{
+			type = "string-setting",
+			default_value = defaultTime,
+			allowed_values = timeChangeSettingNames,
+			name = makeTimeSettingId(knownPlanet.name),
+			order = planetOrderMain .. currentPlanetOrder .. "b" .. "-[" .. knownPlanet.name .. "-time]",
+			setting_type = "startup",
+			localised_name = {
+				localeSettingNamePrefix .. "planet_time",
+				knownPlanet.name:sub(1, 1):upper() .. knownPlanet.name:sub(2),
+			},
+			localised_description = {
+				localeSettingDescriptionPrefix .. "planet_time",
+				knownPlanet.name:sub(1, 1):upper() .. knownPlanet.name:sub(2),
 			},
 		}
 	})
 	currentPlanetOrder = string.char(currentPlanetOrder:byte() + 1)
 end
+
 data:extend({
 	{
-		type = "bool-setting",
-		default_value = false,
-		name = makePlanetSettingName(nil),
-		order = planetOrderMain .. currentPlanetOrder .. '-[' .. "unknowns" .. ']',
+		type = "string-setting",
+		default_value = "vanilla_both",
+		allowed_values = colorChangeSettingNamesForUnknown,
+		name = makeColorSettingId(nil),
+		order = planetOrderMain .. currentPlanetOrder .. "a" .. "-[unknown-planet-color]",
 		setting_type = "startup",
 		localised_name = {
-			localeSettingNamePrefix .. "unknown_planets",
+			localeSettingNamePrefix .. "unknown_planet_color",
 		},
 		localised_description = {
-			localeSettingDescriptionPrefix .. "unknown_planets",
+			localeSettingDescriptionPrefix .. "unknown_planet_color",
+		},
+	}
+})
+data:extend({
+	{
+		type = "string-setting",
+		default_value = "literal",
+		allowed_values = timeChangeSettingNamesForUnknown,
+		name = makeTimeSettingId(nil),
+		order = planetOrderMain .. currentPlanetOrder .. "b" .. "-[unknown-planet-time]",
+		setting_type = "startup",
+		localised_name = {
+			localeSettingNamePrefix .. "unknown_planet_time",
+		},
+		localised_description = {
+			localeSettingDescriptionPrefix .. "unknown_planet_time",
+			{localeSettingNamePrefix .. "unknown_planet_color"},
+			{localeSettingValueNamePrefix .. settingNamePrefix .. "unknown_planet_color-planet_none"},
 		},
 	}
 })
@@ -80,19 +122,19 @@ for _, setting in ipairs(colorSettings) do
 			type = "string-setting",
 			default_value = setting.default,
 			allowed_values = allowedColorValues,
-			name = makeOtherSettingName(setting.groupName, setting.targetName, optionName),
+			name = makeOtherSettingId(setting.groupName, setting.targetName, optionName),
 			order = makeOtherOrder(setting.groupName, setting.targetName, optionName),
 			setting_type = "startup",
 			localised_name = {
-				localeNamePrefix .. makeOtherSettingName(setting.groupName, "", optionName),
-				{localeSettingNamePrefix .. setting.targetName}
+				localeNamePrefix .. makeOtherSettingId(setting.groupName, "", optionName),
+				{localeSettingNamePrefix .. setting.targetName},
 			},
 			localised_description = {
-				localeDescriptionPrefix .. makeOtherSettingName(setting.groupName, "", optionName),
+				localeDescriptionPrefix .. makeOtherSettingId(setting.groupName, "", optionName),
 				{localeSettingDescriptionPrefix .. setting.targetName},
-				{localeSettingValueNamePrefix .. makeOtherSettingName(setting.groupName, setting.targetName, optionName) .. "-" .. setting.default},
-				{localeSettingValueNamePrefix .. makeOtherSettingName(setting.groupName, setting.targetName, optionName) .. "-" .. setting.vanilla},
-				setting.targetName == settingNamesParts.targets.day and {localeDescriptionPrefix .. makeOtherSettingName("darkDayWarning")} or ""
+				{localeSettingValueNamePrefix .. makeOtherSettingId(setting.groupName, setting.targetName, optionName) .. "-" .. setting.default},
+				{localeSettingValueNamePrefix .. makeOtherSettingId(setting.groupName, setting.targetName, optionName) .. "-" .. setting.vanilla},
+				setting.targetName == settingNamesParts.targets.day and {localeDescriptionPrefix .. makeOtherSettingId("darkDayWarning")} or "",
 			},
 		}
 	})
@@ -114,17 +156,20 @@ for _, setting in ipairs(percentSettings) do
 			default_value = setting.default,
 			minimum_value = 0.0,
 			maximum_value = 100.0,
-			name = makeOtherSettingName(setting.groupName, setting.targetName, optionName),
+			name = makeOtherSettingId(setting.groupName, setting.targetName, optionName),
 			order = makeOtherOrder(setting.groupName, setting.targetName, optionName),
 			setting_type = "startup",
 			localised_name = {
-				localeNamePrefix .. makeOtherSettingName(setting.groupName, "", optionName),
-				{localeSettingNamePrefix .. setting.targetName}
+				localeNamePrefix .. makeOtherSettingId(setting.groupName, "", optionName),
+				{localeSettingNamePrefix .. setting.targetName},
 			},
 			localised_description = {
-				localeDescriptionPrefix .. makeOtherSettingName(setting.groupName, "", optionName),
+				localeDescriptionPrefix .. makeOtherSettingId(setting.groupName, "", optionName),
 				{localeSettingDescriptionPrefix .. setting.targetName},
-				tostring(setting.default), tostring(setting.vanilla)
+				tostring(setting.default), tostring(setting.vanilla),
+				{localeSettingNamePrefix .. settingNamesParts.targets.night},
+				{localeSettingNamePrefix .. settingNamesParts.targets.sunset},
+				{localeSettingNamePrefix .. settingNamesParts.targets.sunrise},
 			},
 		}
 	})

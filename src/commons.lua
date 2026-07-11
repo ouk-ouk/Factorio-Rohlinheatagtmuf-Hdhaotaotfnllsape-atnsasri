@@ -1,22 +1,52 @@
+-- Util functions
+
+function table.insert_all(target, source)
+	for _, value in pairs(source) do
+		table.insert(target, value)
+	end
+end
+
 -- General
 modName = "Rohlinheatagtmuf_Hdhaotaotfnllsape-atnsasri"
 
 -- Known planets
-knownPlanets = {"nauvis"}
+knownPlanets = {
+		{
+			name = "nauvis",
+			day = {"identity"},
+			night = {"__core__/graphics/color_luts/lut-night.png"},
+		},
+	}
 if mods["space-age"] then
-	table.insert(knownPlanets, "vulcanus")
-	table.insert(knownPlanets, "gleba")
-	table.insert(knownPlanets, "fulgora")
-	table.insert(knownPlanets, "aquilo")
+	table.insert_all(knownPlanets, {
+		{
+			name = "vulcanus",
+			day = {"__space-age__/graphics/lut/vulcanus-1-day.png"},
+			night = {"__space-age__/graphics/lut/vulcanus-2-night.png"},
+		},
+		{
+			name = "gleba",
+			day = {"__space-age__/graphics/lut/gleba-1-noon.png"},
+			night = {"__space-age__/graphics/lut/gleba-5-after-sunset.png", "__space-age__/graphics/lut/gleba-6-before-dawn.png"},
+		},
+		{
+			name = "fulgora",
+			day = {"__space-age__/graphics/lut/fulgora-1-noon.png"},
+			night = {"__space-age__/graphics/lut/fulgora-3-after-sunset.png", "__space-age__/graphics/lut/fulgora-4-before-dawn.png"},
+		},
+		{
+			name = "aquilo",
+		},
+	})
 end
 
-function isPlanetKnown(planetName)
+function findKnownPlanet(planetName)
 	for _, knownPlanet in pairs(knownPlanets) do
-		if knownPlanet == planetName then
-			return true
+		if knownPlanet.name == planetName then
+			return knownPlanet
 		end
 	end
-	return false
+	return nil
 end
 
 -- Setting names
@@ -39,31 +69,58 @@ settingNamesParts = {
 	},
 }
 
-function makePlanetSettingName(planet)
+-- Planet settings
+
+colorChangeSettingValues = {
+	planet_both =   {changeDay = true,  changeNight = true , vanillaLuts = false},
+	planet_day =    {changeDay = true,  changeNight = false, vanillaLuts = false},
+	planet_night =  {changeDay = false, changeNight = true , vanillaLuts = false},
+	planet_none =   {changeDay = false, changeNight = false, vanillaLuts = false},
+	vanilla_both =  {changeDay = true,  changeNight = true , vanillaLuts = true },
+	vanilla_day =   {changeDay = true,  changeNight = false, vanillaLuts = true },
+	vanilla_night = {changeDay = false, changeNight = true , vanillaLuts = true },
+	vanilla_none =  {changeDay = false, changeNight = false, vanillaLuts = true },
+}
+colorChangeSettingNames = {}
+for name, _  in pairs(colorChangeSettingValues) do
+	table.insert(colorChangeSettingNames, name)
+end
+colorChangeSettingNamesForUnknown = {}
+for name, value  in pairs(colorChangeSettingValues) do
+	if value.vanillaLuts or (not value.changeDay and not value.changeNight) then
+		table.insert(colorChangeSettingNamesForUnknown, name)
+	end
+end
+function makeColorSettingId(planet)
 	if planet then
-		return settingNamePrefix .. "planet_" .. planet
+		return settingNamePrefix .. planet .. "_color"
 	else
-		return settingNamePrefix .. "unknown_planets"
+		return settingNamePrefix .. "unknown_planet_color"
 	end
 end
 
-function makeOtherSettingName(groupName, targetName, optionName)
-	result = settingNamePrefix .. groupName
-	for _, thingy in ipairs({targetName, optionName}) do
-		if thingy ~= "" then
-			result = result .. "_" .. thingy
-		end
+timeChangeSettingNames = {
+	"proportional",
+	"literal",
+	"unchanged",
+}
+timeChangeSettingNamesForUnknown = {"literal", "unchanged"}
+function makeTimeSettingId(planet)
+	if planet then
+		return settingNamePrefix .. planet .. "_time"
+	else
+		return settingNamePrefix .. "unknown_planet_time"
 	end
-	return result
 end
 
--- LUT settings values
+-- LUT settings
+
 colorSettingValues = {
 	identity =                {lut = "identity",                                                               targetName = settingNamesParts.targets.day        },
 	vanilla_day =             {lut = "__core__/graphics/color_luts/lut-day.png",                               targetName = settingNamesParts.targets.day        },
 	vanilla_night =           {lut = "__core__/graphics/color_luts/lut-night.png",                             targetName = settingNamesParts.targets.night      },
 	vanilla_mapNight =        {lut = "__core__/graphics/color_luts/night.png",                                 targetName = settingNamesParts.targets.night      },
-	vanilla_nightVision =     {lut =  "__core__/graphics/color_luts/nightvision.png",                          targetName = settingNamesParts.targets.nightVision},
+	vanilla_nightVision =     {lut = "__core__/graphics/color_luts/nightvision.png",                           targetName = settingNamesParts.targets.nightVision},
 	mod_grayNight =           {lut = "__" .. modName .. "__/graphics/color_luts/gray-night-lut.png",           targetName = settingNamesParts.targets.night      },
 	mod_blueNight =           {lut = "__" .. modName .. "__/graphics/color_luts/blue-night-lut.png",           targetName = settingNamesParts.targets.night      },
 	mod_darkNight =           {lut = "__" .. modName .. "__/graphics/color_luts/dark-night-lut.png",           targetName = settingNamesParts.targets.night      },
@@ -76,3 +133,15 @@ colorSettingValues = {
 	mod_grayNightVision =     {lut = "__" .. modName .. "__/graphics/color_luts/gray-nightvision-lut.png",     targetName = settingNamesParts.targets.nightVision},
 	mod_greenNightVision =    {lut = "__" .. modName .. "__/graphics/color_luts/green-nightvision-lut.png",    targetName = settingNamesParts.targets.nightVision},
 }
+
+-- General settings
+
+function makeOtherSettingId(groupName, targetName, optionName)
+	result = settingNamePrefix .. groupName
+	for _, thingy in ipairs({targetName, optionName}) do
+		if thingy ~= "" then
+			result = result .. "_" .. thingy
+		end
+	end
+	return result
+end

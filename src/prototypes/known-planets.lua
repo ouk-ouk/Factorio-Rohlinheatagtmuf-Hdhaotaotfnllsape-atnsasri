@@ -1,24 +1,16 @@
 require("commons")
 require("prototypes.planets-common")
 
--- Default color lookups
-oldDefaultColorLookup = data.raw["utility-constants"]["default"]["daytime_color_lookup"]
-data.raw["utility-constants"]["default"]["daytime_color_lookup"] = makeColorLookup(settingNamesParts.groups.game)
-
 -- Color lookups for specific planets
 for _, planet in pairs(data.raw.planet) do
-	if isPlanetKnown(planet.name) then
+	knownPlanet = findKnownPlanet(planet.name)
+	if knownPlanet then
+		if not knownPlanet.day or not knownPlanet.night then
+			knownPlanet = knownPlanets[1]
+		end
 		local srp = planet.surface_render_parameters
-		if not srp then
-			srp = {}
-		end
-		local dncColorLookup = srp.day_night_cycle_color_lookup
-		local planetIsEnabled = settings.startup[makePlanetSettingName(planet.name)].value
-		if dncColorLookup and planetIsEnabled then
-			srp.day_night_cycle_color_lookup = makeColorLookup(settingNamesParts.groups.game)
-		end
-		if not dncColorLookup and not planetIsEnabled then
-			srp.day_night_cycle_color_lookup = oldDefaultColorLookup
-		end
+		local timeChangeSetting = settings.startup[makeTimeSettingId(planet.name)].value
+		local colorChangeSetting = colorChangeSettingValues[settings.startup[makeColorSettingId(planet.name)].value]
+		modifyLUTsForPlanet(planet, knownPlanet, timeChangeSetting, colorChangeSetting)
 	end
 end
