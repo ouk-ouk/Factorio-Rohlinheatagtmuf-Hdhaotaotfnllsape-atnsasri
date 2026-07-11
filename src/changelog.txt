@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.210.0
+Date: 11. 07. 2026
+  Features:
+    - Added more granular options for each planet and a more sophisticated algorithm. This should allow changing the night color without compromising the general look of the planets.
+    - Added setting to change space platforms LUT. (Set to appropriate overexposed bright colors by default.)
+---------------------------------------------------------------------------------------------------
 Version: 2.210.0
 Date: 10. 07. 2026
   Update:
