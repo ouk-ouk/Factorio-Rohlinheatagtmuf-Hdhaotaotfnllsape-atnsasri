@@ -182,7 +182,7 @@ function modifyLUTsForPlanet(planet, knownPlanet, timeChangeSetting, colorChange
 
 	newColorLookup = modifyColors(newColorLookup, knownPlanet, colorChangeSetting)
 
-	if newColorLookup == oldColorLookup then
+	if newColorLookup == oldColorLookup and mods["space-age"] then
 		local defaultSpacePlatformsLut = knownPlanets[1].day[1]
 		local newSpacePlatformsLut = colorSettingValues[settings.startup[makeOtherSettingId(settingNamesParts.groups.spacePlatforms, settingNamesParts.targets.spacePlatforms, settingNamesParts.options.colors)].value].lut
 		if newSpacePlatformsLut ~= defaultSpacePlatformsLut then

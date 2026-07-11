@@ -69,6 +69,7 @@ data:extend({
 		allowed_values = colorChangeSettingNamesForUnknown,
 		name = makeColorSettingId(nil),
 		order = planetOrderMain .. currentPlanetOrder .. "a" .. "-[unknown-planet-color]",
+		hidden = not mods["space-age"],
 		setting_type = "startup",
 		localised_name = {
 			localeSettingNamePrefix .. "unknown_planet_color",
@@ -85,6 +86,7 @@ data:extend({
 		allowed_values = timeChangeSettingNamesForUnknown,
 		name = makeTimeSettingId(nil),
 		order = planetOrderMain .. currentPlanetOrder .. "b" .. "-[unknown-planet-time]",
+		hidden = not mods["space-age"],
 		setting_type = "startup",
 		localised_name = {
 			localeSettingNamePrefix .. "unknown_planet_time",
@@ -123,6 +125,7 @@ for _, setting in ipairs(colorSettings) do
 			allowed_values = allowedColorValues,
 			name = makeOtherSettingId(setting.groupName, setting.targetName, optionName),
 			order = makeOtherOrder(setting.groupName, setting.targetName, optionName),
+			hidden = setting.groupName == settingNamesParts.groups.spacePlatforms and not mods["space-age"],
 			setting_type = "startup",
 			localised_name = {
 				localeNamePrefix .. makeOtherSettingId(setting.groupName, "", optionName),
