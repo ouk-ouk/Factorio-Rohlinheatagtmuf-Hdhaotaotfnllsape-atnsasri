@@ -9,46 +9,6 @@ end
 -- General
 modName = "Rohlinheatagtmuf_Hdhaotaotfnllsape-atnsasri"
 
--- Known planets
-knownPlanets = {
-		{
-			name = "nauvis",
-			day = {"identity"},
-			night = {"__core__/graphics/color_luts/lut-night.png"},
-		},
-	}
-if mods["space-age"] then
-	table.insert_all(knownPlanets, {
-		{
-			name = "vulcanus",
-			day = {"__space-age__/graphics/lut/vulcanus-1-day.png"},
-			night = {"__space-age__/graphics/lut/vulcanus-2-night.png"},
-		},
-		{
-			name = "gleba",
-			day = {"__space-age__/graphics/lut/gleba-1-noon.png"},
-			night = {"__space-age__/graphics/lut/gleba-5-after-sunset.png", "__space-age__/graphics/lut/gleba-6-before-dawn.png"},
-		},
-		{
-			name = "fulgora",
-			day = {"__space-age__/graphics/lut/fulgora-1-noon.png"},
-			night = {"__space-age__/graphics/lut/fulgora-3-after-sunset.png", "__space-age__/graphics/lut/fulgora-4-before-dawn.png"},
-		},
-		{
-			name = "aquilo",
-		},
-	})
-end
-
-function findKnownPlanet(planetName)
-	for _, knownPlanet in pairs(knownPlanets) do
-		if knownPlanet.name == planetName then
-			return knownPlanet
-		end
-	end
-	return nil
-end
-
 -- Setting names
 settingNamePrefix = modName .. "-"
 settingNamesParts = {
@@ -144,4 +104,54 @@ function makeOtherSettingId(groupName, targetName, optionName)
 		end
 	end
 	return result
+end
+
+-- Known planets
+knownPlanets = {
+		{
+			name = "nauvis",
+			day = {"identity"},
+			night = {"__core__/graphics/color_luts/lut-night.png"},
+			defaultColors = "planet_both",
+			defaultTimes = "proportional",
+		},
+	}
+if mods["space-age"] then
+	table.insert_all(knownPlanets, {
+		{
+			name = "vulcanus",
+			day = {"__space-age__/graphics/lut/vulcanus-1-day.png"},
+			night = {"__space-age__/graphics/lut/vulcanus-2-night.png"},
+			defaultColors = "planet_night",
+			defaultTimes = "proportional",
+		},
+		{
+			name = "gleba",
+			day = {"__space-age__/graphics/lut/gleba-1-noon.png"},
+			night = {"__space-age__/graphics/lut/gleba-5-after-sunset.png", "__space-age__/graphics/lut/gleba-6-before-dawn.png"},
+			defaultColors = "planet_night",
+			defaultTimes = "proportional",
+		},
+		{
+			name = "fulgora",
+			day = {"__space-age__/graphics/lut/fulgora-1-noon.png"},
+			night = {"__space-age__/graphics/lut/fulgora-3-after-sunset.png", "__space-age__/graphics/lut/fulgora-4-before-dawn.png"},
+			defaultColors = "planet_night",
+			defaultTimes = "literal",
+		},
+		{
+			name = "aquilo",
+			defaultColors = "planet_both",
+			defaultTimes = "proportional",
+		},
+	})
+end
+
+function findKnownPlanet(planetName)
+	for _, knownPlanet in pairs(knownPlanets) do
+		if knownPlanet.name == planetName then
+			return knownPlanet
+		end
+	end
+	return nil
 end

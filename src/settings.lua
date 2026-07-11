@@ -22,13 +22,11 @@ end
 local planetOrderMain = "a"
 local currentPlanetOrder = "a"
 
-local defaultColor = "planet_both"
-local defaultTime = "proportional"
 for _, knownPlanet in pairs(knownPlanets) do
 	data:extend({
 		{
 			type = "string-setting",
-			default_value = defaultColor,
+			default_value = knownPlanet.defaultColors,
 			allowed_values = colorChangeSettingNames,
 			name = makeColorSettingId(knownPlanet.name),
 			order = planetOrderMain .. currentPlanetOrder .. "a" .. "-[" .. knownPlanet.name .. "-color]",
@@ -46,7 +44,7 @@ for _, knownPlanet in pairs(knownPlanets) do
 	data:extend({
 		{
 			type = "string-setting",
-			default_value = defaultTime,
+			default_value = knownPlanet.defaultTimes,
 			allowed_values = timeChangeSettingNames,
 			name = makeTimeSettingId(knownPlanet.name),
 			order = planetOrderMain .. currentPlanetOrder .. "b" .. "-[" .. knownPlanet.name .. "-time]",
