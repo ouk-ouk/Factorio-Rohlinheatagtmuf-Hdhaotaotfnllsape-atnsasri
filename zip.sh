@@ -37,7 +37,7 @@ find "./$file_name/locale/" -type f -name '*.cfg' \
 do
 	cp -a "$file" "$file~"
 	mv "$file~" "$file"
-	sed -i -e 's/^\(.*\)<group>_<target>\(.*\)$/\1game_day\2\n\1map_day\2\n\1game_night\2\n\1map_night\2\n\1nightVision_nightVision\2/g' "$file"
+	sed -i -e 's/^\(.*\)<group>_<target>\(.*\)$/\1game_day\2\n\1map_day\2\n\1game_night\2\n\1map_night\2\n\1nightVision_nightVision\2\n\1spacePlatforms_spacePlatforms\2/g' "$file"
 	sed -i -e 's/^\(.*\)<planet>\(.*\)$/\1nauvis\2\n\1vulcanus\2\n\1gleba\2\n\1fulgora\2\n\1aquilo\2\n\1unknown_planet\2/g' "$file"
 done
 zip -9 -r "./${file_name}.zip" "./${file_name}"

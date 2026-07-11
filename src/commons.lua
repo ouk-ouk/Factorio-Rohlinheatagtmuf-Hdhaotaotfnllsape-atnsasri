@@ -15,6 +15,7 @@ settingNamesParts = {
 	groups = {
 		game = "game",
 		nightVision = "nightVision",
+		spacePlatforms = "spacePlatforms",
 	},
 	targets = {
 		day = "day",
@@ -22,6 +23,7 @@ settingNamesParts = {
 		night = "night",
 		sunrise = "sunrise",
 		nightVision = "nightVision",
+		spacePlatforms = "spacePlatforms"
 	},
 	options = {
 		colors = "colors",

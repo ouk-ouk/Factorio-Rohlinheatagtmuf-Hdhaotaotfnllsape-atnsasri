@@ -11,8 +11,8 @@ local function makeOtherOrder(groupName, targetName, optionName)
 	local function makeOtherOrderPart(name, letters)
 		return letters[name] .. "[" .. name .. "]"
 	end
-	local groupLetters = {[settingNamesParts.groups.game] = "b", [settingNamesParts.groups.nightVision] = "c"}
-	local targetLetters = {[settingNamesParts.targets.day] = "a", [settingNamesParts.targets.sunset] = "b", [settingNamesParts.targets.night] = "c", [settingNamesParts.targets.sunrise] = "d", [settingNamesParts.targets.nightVision] = "e"}
+	local groupLetters = {[settingNamesParts.groups.game] = "b", [settingNamesParts.groups.nightVision] = "c", [settingNamesParts.groups.spacePlatforms] = "d"}
+	local targetLetters = {[settingNamesParts.targets.day] = "a", [settingNamesParts.targets.sunset] = "b", [settingNamesParts.targets.night] = "c", [settingNamesParts.targets.sunrise] = "d", [settingNamesParts.targets.nightVision] = "e", [settingNamesParts.targets.spacePlatforms] = "f"}
 	local optionLetters = {[settingNamesParts.options.colors] = "a", [settingNamesParts.options.percent] = "b"}
 	return makeOtherOrderPart(groupName, groupLetters) .. "-" .. makeOtherOrderPart(optionName, optionLetters) .. "-" .. makeOtherOrderPart(targetName, targetLetters)
 end
@@ -108,9 +108,10 @@ for _, targetName in pairs(settingNamesParts.targets) do
 end
 
 local colorSettings = {
-	{groupName = settingNamesParts.groups.game,        default = "identity",             vanilla = "identity",            targetName = settingNamesParts.targets.day},
-	{groupName = settingNamesParts.groups.game,        default = "mod_imprDarkNight",    vanilla = "vanilla_night",       targetName = settingNamesParts.targets.night},
-	{groupName = settingNamesParts.groups.nightVision, default = "mod_greenNightVision", vanilla = "vanilla_nightVision", targetName = settingNamesParts.targets.nightVision},
+	{groupName = settingNamesParts.groups.game,           default = "identity",             vanilla = "identity",            targetName = settingNamesParts.targets.day},
+	{groupName = settingNamesParts.groups.game,           default = "mod_imprDarkNight",    vanilla = "vanilla_night",       targetName = settingNamesParts.targets.night},
+	{groupName = settingNamesParts.groups.nightVision,    default = "mod_greenNightVision", vanilla = "vanilla_nightVision", targetName = settingNamesParts.targets.nightVision},
+	{groupName = settingNamesParts.groups.spacePlatforms, default = "vanilla_day",          vanilla = "identity",            targetName = settingNamesParts.targets.spacePlatforms},
 }
 
 for _, setting in ipairs(colorSettings) do

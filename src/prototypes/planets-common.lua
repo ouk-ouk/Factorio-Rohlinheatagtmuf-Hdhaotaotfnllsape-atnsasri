@@ -182,6 +182,17 @@ function modifyLUTsForPlanet(planet, knownPlanet, timeChangeSetting, colorChange
 
 	newColorLookup = modifyColors(newColorLookup, knownPlanet, colorChangeSetting)
 
+	if newColorLookup == oldColorLookup then
+		local defaultSpacePlatformsLut = knownPlanets[1].day[1]
+		local newSpacePlatformsLut = colorSettingValues[settings.startup[makeOtherSettingId(settingNamesParts.groups.spacePlatforms, settingNamesParts.targets.spacePlatforms, settingNamesParts.options.colors)].value].lut
+		if newSpacePlatformsLut ~= defaultSpacePlatformsLut then
+			newColorLookup = {}
+			for _, lutInfo in pairs(getDefaultColorLookup()) do
+				table.insert(newColorLookup, {lutInfo[1], lutInfo[2]})
+			end
+		end
+	end
+
 	if newColorLookup ~= oldColorLookup then
 		if not planet.surface_render_parameters then
 			planet.surface_render_parameters = {}
