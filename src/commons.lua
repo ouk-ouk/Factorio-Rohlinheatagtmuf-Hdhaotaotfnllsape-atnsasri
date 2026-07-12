@@ -143,14 +143,14 @@ local knownPlanetsFromMods = {
 		},
 		{
 			name = "gleba",
-			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-1-noon.png"},
+			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-1-noon.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-2-afternoon.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-8-morning.png"},
 			night = {"__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-5-after-sunset.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-6-before-dawn.png"},
 			defaultColors = "planet_night",
 			defaultTimes = "proportional",
 		},
 		{
 			name = "fulgora",
-			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-1-noon.png"},
+			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-1-noon.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-5-morning.png"},
 			night = {"__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-3-after-sunset.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-4-before-dawn.png"},
 			defaultColors = "planet_night",
 			defaultTimes = "literal",
