@@ -9,6 +9,10 @@ end
 -- General
 modName = "Rohlinheatagtmuf_Hdhaotaotfnllsape-atnsasri"
 
+knownMods = {
+	spaceAge = "space-age",
+}
+
 -- Setting names
 settingNamePrefix = modName .. "-"
 settingNamesParts = {
@@ -120,34 +124,34 @@ end
 
 -- Known planets
 knownPlanets = {
-		{
-			name = "nauvis",
-			day = {"identity"},
-			night = {"__core__/graphics/color_luts/lut-night.png"},
-			defaultColors = "planet_both",
-			defaultTimes = "proportional",
-		},
-	}
-if mods["space-age"] then
-	table.insert_all(knownPlanets, {
+	{
+		name = "nauvis",
+		day = {"identity"},
+		night = {"__core__/graphics/color_luts/lut-night.png"},
+		defaultColors = "planet_both",
+		defaultTimes = "proportional",
+	},
+}
+local knownPlanetsFromMods = {
+	[knownMods.spaceAge] = {
 		{
 			name = "vulcanus",
-			day = {"__space-age__/graphics/lut/vulcanus-1-day.png"},
-			night = {"__space-age__/graphics/lut/vulcanus-2-night.png"},
+			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/vulcanus-1-day.png"},
+			night = {"__" .. knownMods.spaceAge .. "__/graphics/lut/vulcanus-2-night.png"},
 			defaultColors = "planet_night",
 			defaultTimes = "proportional",
 		},
 		{
 			name = "gleba",
-			day = {"__space-age__/graphics/lut/gleba-1-noon.png"},
-			night = {"__space-age__/graphics/lut/gleba-5-after-sunset.png", "__space-age__/graphics/lut/gleba-6-before-dawn.png"},
+			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-1-noon.png"},
+			night = {"__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-5-after-sunset.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/gleba-6-before-dawn.png"},
 			defaultColors = "planet_night",
 			defaultTimes = "proportional",
 		},
 		{
 			name = "fulgora",
-			day = {"__space-age__/graphics/lut/fulgora-1-noon.png"},
-			night = {"__space-age__/graphics/lut/fulgora-3-after-sunset.png", "__space-age__/graphics/lut/fulgora-4-before-dawn.png"},
+			day = {"__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-1-noon.png"},
+			night = {"__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-3-after-sunset.png", "__" .. knownMods.spaceAge .. "__/graphics/lut/fulgora-4-before-dawn.png"},
 			defaultColors = "planet_night",
 			defaultTimes = "literal",
 		},
@@ -156,7 +160,12 @@ if mods["space-age"] then
 			defaultColors = "planet_both",
 			defaultTimes = "proportional",
 		},
-	})
+	},
+}
+for modName, knownPlanetsFromMod in pairs(knownPlanetsFromMods) do
+	if mods[modName] then
+		table.insert_all(knownPlanets, knownPlanetsFromMod)
+	end
 end
 
 function findKnownPlanet(planetName)
