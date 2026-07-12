@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 3.200.1
+Date: 12. 07. 2026
+  Features:
+    - Added more LUTs from the base game to the dropdowns.
+  Info:
+    - Some settings are now hidden when Space Age is not enabled. (The ones that do nothing without Space Age.)
+    - Slight adjustments to which LUTs this mod considers to be day / night on other planets.
+---------------------------------------------------------------------------------------------------
 Version: 3.200.0
 Date: 11. 07. 2026
   Features:
