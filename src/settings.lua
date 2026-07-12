@@ -101,18 +101,18 @@ data:extend({
 
 -- LUT settings
 local allowedColorValues = {}
-for _, targetName in pairs(settingNamesParts.targets) do
+for _, lutTypeName in pairs(settingNamesParts.lutTypes) do
 	for id, setting in pairs(colorSettingValues) do
-		if setting.targetName == targetName then
+		if setting.lutTypeName == lutTypeName then
 			table.insert(allowedColorValues, id)
 		end
 	end
 end
 
 local colorSettings = {
-	{groupName = settingNamesParts.groups.game,           default = "identity",             vanilla = "identity",            targetName = settingNamesParts.targets.day},
-	{groupName = settingNamesParts.groups.game,           default = "mod_imprDarkNight",    vanilla = "vanilla_night",       targetName = settingNamesParts.targets.night},
-	{groupName = settingNamesParts.groups.nightVision,    default = "mod_greenNightVision", vanilla = "vanilla_nightVision", targetName = settingNamesParts.targets.nightVision},
+	{groupName = settingNamesParts.groups.game,           default = "identity",             vanilla = "identity",            targetName = settingNamesParts.targets.day           },
+	{groupName = settingNamesParts.groups.game,           default = "mod_imprDarkNight",    vanilla = "vanilla_night",       targetName = settingNamesParts.targets.night         },
+	{groupName = settingNamesParts.groups.nightVision,    default = "mod_greenNightVision", vanilla = "vanilla_nightVision", targetName = settingNamesParts.targets.nightVision   },
 	{groupName = settingNamesParts.groups.spacePlatforms, default = "vanilla_day",          vanilla = "identity",            targetName = settingNamesParts.targets.spacePlatforms},
 }
 
@@ -136,7 +136,7 @@ for _, setting in ipairs(colorSettings) do
 				{localeSettingDescriptionPrefix .. setting.targetName},
 				{localeSettingValueNamePrefix .. makeOtherSettingId(setting.groupName, setting.targetName, optionName) .. "-" .. setting.default},
 				{localeSettingValueNamePrefix .. makeOtherSettingId(setting.groupName, setting.targetName, optionName) .. "-" .. setting.vanilla},
-				setting.targetName == settingNamesParts.targets.day and {localeDescriptionPrefix .. makeOtherSettingId("darkDayWarning")} or "",
+				setting.lutTypeName == settingNamesParts.lutTypes.day and {localeDescriptionPrefix .. makeOtherSettingId("darkDayWarning")} or "",
 			},
 		}
 	})
@@ -144,9 +144,9 @@ end
 
 -- Percent settings
 local percentSettings = {
-	{groupName = settingNamesParts.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNamesParts.targets.sunset},
-	{groupName = settingNamesParts.groups.game,        default = 30.0, vanilla = 10.0, targetName = settingNamesParts.targets.night},
-	{groupName = settingNamesParts.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNamesParts.targets.sunrise},
+	{groupName = settingNamesParts.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNamesParts.targets.sunset     },
+	{groupName = settingNamesParts.groups.game,        default = 30.0, vanilla = 10.0, targetName = settingNamesParts.targets.night      },
+	{groupName = settingNamesParts.groups.game,        default = 15.0, vanilla = 25.0, targetName = settingNamesParts.targets.sunrise    },
 	{groupName = settingNamesParts.groups.nightVision, default = 70.0, vanilla = 50.0, targetName = settingNamesParts.targets.nightVision},
 }
 
