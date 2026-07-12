@@ -79,10 +79,14 @@ end
 
 colorSettingValues = {
 	identity =                {lut = "identity",                                                               targetName = settingNamesParts.targets.day        },
+	vanilla_frozen =          {lut = "__core__/graphics/color_luts/frozen.png",                                targetName = settingNamesParts.targets.day        },
+	vanilla_dawn =            {lut = "__core__/graphics/color_luts/lut-dawn.png",                              targetName = settingNamesParts.targets.day        },
 	vanilla_day =             {lut = "__core__/graphics/color_luts/lut-day.png",                               targetName = settingNamesParts.targets.day        },
 	vanilla_night =           {lut = "__core__/graphics/color_luts/lut-night.png",                             targetName = settingNamesParts.targets.night      },
+	vanilla_sunset =          {lut = "__core__/graphics/color_luts/lut-sunset.png",                            targetName = settingNamesParts.targets.night      },
 	vanilla_mapNight =        {lut = "__core__/graphics/color_luts/night.png",                                 targetName = settingNamesParts.targets.night      },
 	vanilla_nightVision =     {lut = "__core__/graphics/color_luts/nightvision.png",                           targetName = settingNamesParts.targets.nightVision},
+	vanilla_orangeDawn =      {lut = "__core__/graphics/color_luts/orange-dawn.png",                           targetName = settingNamesParts.targets.day        },
 	mod_grayNight =           {lut = "__" .. modName .. "__/graphics/color_luts/gray-night-lut.png",           targetName = settingNamesParts.targets.night      },
 	mod_blueNight =           {lut = "__" .. modName .. "__/graphics/color_luts/blue-night-lut.png",           targetName = settingNamesParts.targets.night      },
 	mod_darkNight =           {lut = "__" .. modName .. "__/graphics/color_luts/dark-night-lut.png",           targetName = settingNamesParts.targets.night      },
