@@ -65,7 +65,7 @@ end
 data:extend({
 	{
 		type = "string-setting",
-		default_value = "vanilla_both",
+		default_value = "vanilla_night",
 		allowed_values = colorChangeSettingNamesForUnknown,
 		name = makeColorSettingId(nil),
 		order = planetOrderMain .. currentPlanetOrder .. "a" .. "-[unknown-planet-color]",
